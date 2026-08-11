@@ -1,0 +1,152 @@
+.users-page {
+  width: 100%;
+  padding: 20px;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.left-section {
+  display: flex;
+  gap: 10px;
+}
+
+.summary-btn,
+.create-btn,
+.edit-btn,
+.search-actions button {
+  border: none;
+  padding: 9px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.summary-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.create-btn {
+  background: #321fdb;
+  color: white;
+}
+
+.create-btn:hover {
+  background: #2617b7;
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.record-box {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-actions input {
+  width: 250px;
+  height: 38px;
+  border: 1px solid #d8dbe0;
+  border-radius: 4px;
+  padding: 0 12px;
+  outline: none;
+}
+
+.search-actions input:focus {
+  border-color: #321fdb;
+}
+
+.search-actions button {
+  background: #6c757d;
+  color: white;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.users-table th {
+  background: #f3f4f7;
+  color: #333;
+  padding: 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  border-bottom: 1px solid #d8dbe0;
+  white-space: nowrap;
+}
+
+.users-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.users-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.edit-btn {
+  background: #321fdb;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #2617b7;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status.active {
+  background: #d1f7dc;
+  color: #198754;
+}
+
+.status.inactive {
+  background: #f8d7da;
+  color: #dc3545;
+}
+
+.no-data {
+  text-align: center !important;
+  padding: 30px !important;
+  color: #777;
+}
+
+.table-loading {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+}

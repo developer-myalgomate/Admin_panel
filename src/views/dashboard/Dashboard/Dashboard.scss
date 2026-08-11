@@ -1,0 +1,50 @@
+.syllabus-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  .card-body {
+    padding: 20px;
+  }
+}
+
+.syllabus-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.syllabus-info {
+  h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 18px;
+  }
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #64748b;
+
+  strong {
+    color: #334155;
+  }
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.success {
+  background: #22c55e;
+}
+
+.danger {
+  background: #ef233c;
+}

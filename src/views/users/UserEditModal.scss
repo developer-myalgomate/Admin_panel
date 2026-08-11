@@ -1,0 +1,46 @@
+.user-edit-page {
+  padding: 20px;
+  width: 100%;
+}
+
+.user-edit-page .card {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.user-edit-page .card-header {
+  background: white;
+  padding: 16px 20px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.user-edit-page .card-body {
+  padding: 25px;
+}
+
+.user-edit-page label {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.user-edit-page input,
+.user-edit-page select {
+  min-height: 40px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.form-actions button {
+  min-width: 100px;
+  font-weight: 600;
+}
