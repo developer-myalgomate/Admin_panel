@@ -82,7 +82,7 @@ function UsersPage() {
       let query = `roleId=${roleId}`
 
       if (loggedInUserId && roleId !== 1) {
-        if (loggedInRole === 'SuperAdmin') {
+        if (loggedInRole === 'Super Admin') {
           query += `&superAdminId=${loggedInUserId}`
         }
 

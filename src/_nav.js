@@ -5,10 +5,11 @@ import { CNavItem, CNavTitle } from '@coreui/react'
 
 const role = localStorage.getItem('role')
 
-const isSuperAdmin = role === 'SuperAdmin'
+const isSuperAdmin = role === 'Super Admin'
 const isAdmin = role === 'Admin'
 const isSubAdmin = role === 'SubAdmin'
 const isMaster = role === 'Master'
+console.log('testest', role, isSuperAdmin, isAdmin, isSubAdmin, isMaster)
 
 const _nav = [
   // =========================
@@ -28,7 +29,7 @@ const _nav = [
 
   // =========================
   // SUPER ADMIN
-  // Only SuperAdmin
+  // Only Super Admin
   // =========================
   ...(isSuperAdmin
     ? [
@@ -43,7 +44,7 @@ const _nav = [
 
   // =========================
   // ADMIN
-  // Only SuperAdmin
+  // Only Super Admin
   // =========================
   ...(isSuperAdmin
     ? [
@@ -58,7 +59,7 @@ const _nav = [
 
   // =========================
   // SUB ADMIN
-  // SuperAdmin + Admin
+  // Super Admin + Admin
   // =========================
   ...(isSuperAdmin || isAdmin
     ? [
@@ -73,7 +74,7 @@ const _nav = [
 
   // =========================
   // MASTER
-  // SuperAdmin + Admin + SubAdmin
+  // Super Admin + Admin + SubAdmin
   // =========================
   ...(isSuperAdmin || isAdmin || isSubAdmin
     ? [
@@ -88,7 +89,7 @@ const _nav = [
 
   // =========================
   // CLIENT
-  // SuperAdmin + Admin + SubAdmin + Master
+  // Super Admin + Admin + SubAdmin + Master
   // =========================
   ...(isSuperAdmin || isAdmin || isSubAdmin || isMaster
     ? [
