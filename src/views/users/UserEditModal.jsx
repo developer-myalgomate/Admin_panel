@@ -230,6 +230,28 @@ function UserEditModal({ user, onClose, onSuccess }) {
     setSelectedScripts((prev) => prev.filter((item) => !visible.includes(item)))
   }
 
+  const getRoleName = (roleId) => {
+    switch (Number(roleId)) {
+      case 1:
+        return 'Super Admin'
+
+      case 2:
+        return 'Admin'
+
+      case 3:
+        return 'Sub Admin'
+
+      case 4:
+        return 'Master'
+
+      case 5:
+        return 'Client'
+
+      default:
+        return 'Client'
+    }
+  }
+
   // --------------------------------------------------
   // Save
   // --------------------------------------------------
@@ -265,11 +287,16 @@ function UserEditModal({ user, onClose, onSuccess }) {
 
       const payload = {
         id: formData.id || undefined,
+
         fullName: formData.fullName.trim(),
         email: formData.email.trim(),
         mobile: formData.mobile.trim(),
         username: formData.username.trim(),
+
+        // Role
         roleId: Number(formData.roleId),
+        role: getRoleName(Number(formData.roleId)),
+
         isActive: formData.isActive,
 
         credit: Number(formData.credit || 0),

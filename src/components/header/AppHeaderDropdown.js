@@ -1,51 +1,144 @@
 import React from 'react'
 import { CAvatar, CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react'
+
 import CIcon from '@coreui/icons-react'
-import { cilAccountLogout } from '@coreui/icons'
+
+import { cilAccountLogout, cilUser, cilSettings } from '@coreui/icons'
+
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import avatar8 from './../../assets/images/avatars/8.jpg'
-import { axios_post } from '../../api/axiosInstance'
 
 const AppHeaderDropdown = () => {
   const navigate = useNavigate()
 
-  // const handleLogout = async () => {
-  //   try {
-  //     // const refreshToken = localStorage.getItem('refreshToken')
-  //     const user = JSON.parse(localStorage.getItem('user'))
+  // -----------------------------------------
+  // Get logged-in user information
+  // -----------------------------------------
 
-  //     await axios_post('/Auth/logout', {
-  //       // refreshToken,
-  //       schoolCode: user?.schoolCode,
-  //     })
+  const fullName = localStorage.getItem('fullName') || 'User'
+  const username = localStorage.getItem('username') || ''
+  const role = localStorage.getItem('role') || ''
 
-  //     toast.success('Logged out successfully')
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     localStorage.removeItem('token')
-  //     // localStorage.removeItem('refreshToken')
-  //     localStorage.removeItem('user')
-  //     localStorage.removeItem('role')
+  // -----------------------------------------
+  // Profile
+  // -----------------------------------------
 
-  //     navigate('/login', { replace: true })
-  //   }
-  // }
+  const handleProfile = () => {
+    navigate('/dashboard/profile')
+  }
+
+  // -----------------------------------------
+  // Settings
+  // -----------------------------------------
+
+  const handleSettings = () => {
+    navigate('/dashboard/settings')
+  }
+
+  // -----------------------------------------
+  // Logout
+  // -----------------------------------------
+
+  const handleLogout = () => {
+    try {
+      // Remove authentication
+      localStorage.removeItem('token')
+
+      // Remove user information
+      localStorage.removeItem('userId')
+      localStorage.removeItem('fullName')
+      localStorage.removeItem('email')
+      localStorage.removeItem('mobile')
+      localStorage.removeItem('username')
+      localStorage.removeItem('roleId')
+      localStorage.removeItem('role')
+      localStorage.removeItem('expiresAtUtc')
+      localStorage.removeItem('user')
+
+      toast.success('Logged out successfully')
+
+      // Redirect to login
+      navigate('/', {
+        replace: true,
+      })
+    } catch (error) {
+      console.error('LOGOUT ERROR:', error)
+
+      toast.error('Logout failed')
+
+      // Still redirect to login
+      navigate('/', {
+        replace: true,
+      })
+    }
+  }
 
   return (
-    <CDropdown variant="nav-item">
+    <CDropdown variant="nav-item" placement="bottom-end">
+      {/* ========================================= */}
+      {/* AVATAR */}
+      {/* ========================================= */}
+
       <CDropdownToggle placement="bottom-end" className="py-0 pe-0" caret={false}>
         <CAvatar src={avatar8} size="md" />
       </CDropdownToggle>
 
-      {/* <CDropdownMenu placement="bottom-end">
-        <CDropdownItem onClick={handleLogout}>
+      {/* ========================================= */}
+      {/* DROPDOWN MENU */}
+      {/* ========================================= */}
+
+      <CDropdownMenu placement="bottom-end">
+        {/* ========================================= */}
+        {/* USER INFO */}
+        {/* ========================================= */}
+
+        <div className="px-3 py-2 border-bottom">
+          <div className="fw-semibold">{fullName}</div>
+
+          {username && <small className="text-body-secondary">@{username}</small>}
+
+          {role && (
+            <>
+              <br />
+
+              <small className="text-body-secondary">{role}</small>
+            </>
+          )}
+        </div>
+
+        {/* ========================================= */}
+        {/* PROFILE */}
+        {/* ========================================= */}
+
+        <CDropdownItem as="button" type="button" onClick={handleProfile}>
+          <CIcon icon={cilUser} className="me-2" />
+          Profile
+        </CDropdownItem>
+
+        {/* ========================================= */}
+        {/* SETTINGS */}
+        {/* ========================================= */}
+
+        <CDropdownItem as="button" type="button" onClick={handleSettings}>
+          <CIcon icon={cilSettings} className="me-2" />
+          Settings
+        </CDropdownItem>
+
+        {/* Divider */}
+
+        <hr className="dropdown-divider" />
+
+        {/* ========================================= */}
+        {/* LOGOUT */}
+        {/* ========================================= */}
+
+        <CDropdownItem as="button" type="button" onClick={handleLogout} className="text-danger">
           <CIcon icon={cilAccountLogout} className="me-2" />
           Logout
         </CDropdownItem>
-      </CDropdownMenu> */}
+      </CDropdownMenu>
     </CDropdown>
   )
 }

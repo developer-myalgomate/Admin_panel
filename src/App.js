@@ -19,6 +19,7 @@ const Login = React.lazy(() => import('./views/Login/Login'))
 
 const App = () => {
   const token = localStorage.getItem('token')
+  console.log('token', token)
 
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const storedTheme = useSelector((state) => state.theme)
@@ -40,9 +41,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={token ? <Navigate to="/" replace /> : <Login />} />
+        <Route path="/" element={token ? <Navigate to="/" replace /> : <Login />} />
 
-        <Route path="/*" element={token ? <DefaultLayout /> : <Navigate to="/login" replace />} />
+        <Route path="/*" element={token ? <DefaultLayout /> : <Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )

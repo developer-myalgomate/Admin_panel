@@ -35,37 +35,50 @@ function Login() {
 
       console.log('LOGIN RESPONSE:', response)
 
-      if (response.success) {
+      if (response?.success && response?.data) {
         const loginData = response.data
 
         console.log('LOGIN DATA:', loginData)
 
-        // Save token
+        // -----------------------------------------
+        // Save authentication
+        // -----------------------------------------
+
         localStorage.setItem('token', loginData.token)
 
-        // Save user information
         localStorage.setItem('userId', String(loginData.id))
-        localStorage.setItem('fullName', loginData.fullName)
-        localStorage.setItem('email', loginData.email)
-        localStorage.setItem('mobile', loginData.mobile)
-        localStorage.setItem('username', loginData.username)
-        localStorage.setItem('roleId', String(loginData.roleId))
-        localStorage.setItem('role', loginData.role)
-        localStorage.setItem('expiresAtUtc', loginData.expiresAtUtc)
 
-        // Save complete user object
+        localStorage.setItem('fullName', loginData.fullName || '')
+
+        localStorage.setItem('email', loginData.email || '')
+
+        localStorage.setItem('mobile', loginData.mobile || '')
+
+        localStorage.setItem('username', loginData.username || '')
+
+        localStorage.setItem('roleId', String(loginData.roleId))
+
+        localStorage.setItem('role', loginData.role || '')
+
+        localStorage.setItem('expiresAtUtc', loginData.expiresAtUtc || '')
+
         localStorage.setItem('user', JSON.stringify(loginData))
+
+        console.log('TOKEN:', localStorage.getItem('token'))
+
+        console.log('ROLE:', localStorage.getItem('role'))
 
         toast.success(response.message || 'Login Successful')
 
-        // Redirect to dashboard
-        setTimeout(() => {
-          navigate('/dashboard', { replace: true })
-        }, 1000)
+        // -----------------------------------------
+        // IMPORTANT
+        // -----------------------------------------
+
+        window.location.href = '/dashboard'
       } else {
-        toast.error(response.message || 'Login Failed')
+        toast.error(response?.message || 'Login Failed')
       }
-    } catch {
+    } catch (error) {
       console.error('LOGIN ERROR:', error)
 
       toast.error(error?.response?.data?.message || error?.message || 'Login Failed')
